@@ -2,6 +2,6 @@
 
 A website for feedback-collection project for college
 
-Collabaration
+collaborators
 
 [Raishan](https://github.com/Raishan12)
