@@ -7,13 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+    $sql = "SELECT * FROM admin_login WHERE email='$email' AND password='$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $_SESSION['id'] = $row['id'];
-        header("Location: ../dashboard.php");
+        header("Location: admin_dashboard.php");
         exit;
     } else {
         $error = "Invalid email or password";
@@ -32,7 +32,7 @@ alert("Invalid email or password");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Admin Login</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <style>
     body {
@@ -66,6 +66,7 @@ alert("Invalid email or password");
         display: block;
         margin-bottom: 10px;
         color: #555;
+        font-weight: bold;
     }
 
     input[type="email"],
@@ -108,23 +109,18 @@ alert("Invalid email or password");
     a:hover {
         text-decoration: underline;
     }
-
-    label {
-        font-weight: bold;
-    }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Login</h1>
+        <h1>Admin Login</h1>
         <form method="POST" action="">
             <label for="email" id="lab">Email:</label>
             <input type="email" id="email" name="email" required>
             <label for="password" id="lab">Password:</label>
             <input type="password" id="password" name="password" required>
             <button type="submit">Login</button>
-            <p>Don't have an account?<a href="signup.php">Sign UP</a></p>
         </form>
     </div>
 </body>
